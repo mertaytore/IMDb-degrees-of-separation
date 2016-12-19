@@ -5,22 +5,25 @@ with open("data.txt") as f:
         count += 1
         if(count > 10):
             line = line.split(",")
+            first = line[0].split("\t")
+            last_list = first + line[1:]
             dup_dict = {}
-
-            for i in line:
+            
+            for i in last_list:
+                i = i.strip('\t')
                 dup_dict[str(i)] = [0, False]
-
-            for i in line:
+            
+            for i in last_list:
                 if(i in dup_dict):
                     dup_dict[str(i)][0] = dup_dict[str(i)][0] + 1
-
-
+        
+        
             out = ""
-            for i in line:
+            for i in last_list:
                 if(i in dup_dict):
                     if(dup_dict[str(i)][0] == 1):
                         out += i + ","
                     elif(dup_dict[str(i)][0] > 1 and dup_dict[str(i)][1] == False):
                         dup_dict[str(i)][1] = True
                         out += i + ","
-            file.write(out)
+    file.write(out)
