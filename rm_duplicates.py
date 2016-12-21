@@ -1,6 +1,6 @@
-file = open("out.txt", "w")
+file = open("newout.txt", "w")
 count = 0
-with open("data.txt") as f:
+with open("newin.txt") as f:
     for line in f:
         count += 1
         if(count > 10):
@@ -22,8 +22,10 @@ with open("data.txt") as f:
             for i in last_list:
                 if(i in dup_dict):
                     if(dup_dict[str(i)][0] == 1):
-                        out += i + ","
+                        out += i + ";"
                     elif(dup_dict[str(i)][0] > 1 and dup_dict[str(i)][1] == False):
                         dup_dict[str(i)][1] = True
-                        out += i + ","
-    file.write(out)
+                        out += i + ";"
+            out = out[:-3]
+            out += '\n'
+            file.write(out)
